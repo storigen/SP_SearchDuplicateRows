@@ -8,7 +8,7 @@ GO
 CREATE PROC [dbo].[SP_SearchDuplicateRows] as
 			   
 /***********************************************************************************************************************************
-OBJECT NAME:		Validation - Find any full row duplicates on tables that have a column named: ReportPublication
+OBJECT NAME:		Search Duplicate Rows - Find any full row duplicates 
 
 EXECUTION PLAN:		Manually
 
@@ -90,9 +90,9 @@ IF OBJECT_ID('tempdb..#process') IS NOT NULL DROP TABLE #process;
 			-----------------------------------------------------------------
 			SELECT @sql = 
 			  'SELECT ' + '''' + @tbl + '''' + ' as TBL, '				+ CHAR(13)+CHAR(10)
-			+ SUBSTRING(@col, 0, LEN(@col))	+ ','						+ CHAR(13)+CHAR(10)
-			+ 'COUNT(*)CNT '											+ CHAR(13)+CHAR(10) 
-			+ 'FROM ' + @tbl											+ CHAR(13)+CHAR(10)
+			+ SUBSTRING(@col, 0, LEN(@col))	+ ','					+ CHAR(13)+CHAR(10)
+			+ 'COUNT(*)CNT '							+ CHAR(13)+CHAR(10) 
+			+ 'FROM ' + @tbl							+ CHAR(13)+CHAR(10)
 			+ 'GROUP BY ' + SUBSTRING(@col, 0, LEN(@col))				+ CHAR(13)+CHAR(10)
 			+ 'HAVING COUNT(*) > 1'
 
